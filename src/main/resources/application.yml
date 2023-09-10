@@ -1,0 +1,34 @@
+server:
+  port: ${WEB_PORT:8081}
+  servlet:
+    context-path: ${WEB_CONTEXT_PATH:/app-web/v1}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ${ACTUATOR_ENDPOINTS:health,loggers,info}
+  endpoint:
+    loggers:
+      enabled: true
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: simple-user
+            authorization-grant-type: authorization_code
+            scope: openid
+        provider:
+          keycloak:
+            issuer-uri: http://localhost/realms/load-testing
+            user-name-attribute: preferred_username
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost/realms/load-testing
+
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+  application:
+    name: app-web

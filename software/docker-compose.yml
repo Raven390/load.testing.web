@@ -1,0 +1,40 @@
+version: '2'
+services:
+  postgresql:
+    image: docker.io/bitnami/postgresql:latest
+    container_name: postgresql
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRESQL_USERNAME=admin
+      - POSTGRESQL_PASSWORD=admin
+      - POSTGRESQL_DATABASE=load_testing
+    volumes:
+      - 'C:\Users\p_nik\IdeaProjects\a-load-testing\software\pg_data:/bitnami/postgresql'
+    networks:
+      - software
+
+  keycloak:
+    image: docker.io/bitnami/keycloak:latest
+    container_name: keycloak
+    ports:
+      - "80:8080"
+    environment:
+      - KEYCLOAK_CREATE_ADMIN_USER=true
+      - KEYCLOAK_ADMIN_USER=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KEYCLOAK_DATABASE_HOST=postgresql
+      - KEYCLOAK_DATABASE_PORT=5432
+      - KEYCLOAK_DATABASE_NAME=load_testing
+      - KEYCLOAK_DATABASE_USER=admin
+      - KEYCLOAK_DATABASE_PASSWORD=admin
+    depends_on:
+      - postgresql
+    volumes:
+      - 'C:\Users\p_nik\IdeaProjects\a-load-testing\software\keyckloak_data:/opt/bitnami/keycloak/themes/mynewtheme'
+    networks:
+      - software
+
+networks:
+  software:
+    driver: bridge
