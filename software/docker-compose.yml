@@ -10,7 +10,7 @@ services:
       - POSTGRESQL_PASSWORD=admin
       - POSTGRESQL_DATABASE=load_testing
     volumes:
-      - 'C:\Users\p_nik\IdeaProjects\a-load-testing\software\pg_data:/bitnami/postgresql'
+      - './pg_data:/bitnami/postgresql'
     networks:
       - software
 
@@ -31,7 +31,7 @@ services:
     depends_on:
       - postgresql
     volumes:
-      - 'C:\Users\p_nik\IdeaProjects\a-load-testing\software\keyckloak_data:/opt/bitnami/keycloak/themes/mynewtheme'
+      - './keyckloak_data:/opt/bitnami/keycloak/themes/mynewtheme'
     networks:
       - software
 
