@@ -3,7 +3,7 @@ package ru.develonica.load.testing.web.test.model.request.validator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import ru.develonica.load.testing.web.test.model.request.TestCreateRequest;
+import ru.develonica.load.testing.web.test.model.request.TestCaseRequest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +15,7 @@ class TestTestRequestValidator {
     public static final String CORRECT_URL = "https://music.yandex.ru/users/voronvorontsov/playlists";
     static final String MALFORMED_URL_INVALID_PROTOCOL = "htttps://music.yandex.ru/users/voronvorontsov/playlists";
     static final String MALFORMED_URL_WRONG_DOMAIN = "https://music/users/voronvorontsov/playlists";
-    TestCreateRequest request = new TestCreateRequest();
+    TestCaseRequest request = new TestCaseRequest();
     @BeforeEach
     void setup() {
         request.setUrl(CORRECT_URL);
@@ -44,7 +44,6 @@ class TestTestRequestValidator {
     void test02_AssertThatMalformedUrlProtocolCauseValidationError() {
         request.setUrl(MALFORMED_URL_INVALID_PROTOCOL);
         assertThat(TestRequestValidator.validate(request)).isFalse();
-
     }
 
     @Order(2)

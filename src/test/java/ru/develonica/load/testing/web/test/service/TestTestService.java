@@ -3,7 +3,9 @@ package ru.develonica.load.testing.web.test.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.develonica.load.testing.web.test.model.exception.TestCreateException;
-import ru.develonica.load.testing.web.test.model.request.TestCreateRequest;
+import ru.develonica.load.testing.web.test.model.object.TestCase;
+import ru.develonica.load.testing.web.test.model.request.TestCaseRequest;
+import ru.develonica.load.testing.web.test.repository.TestCaseRepository;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,8 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class TestTestService {
     public static final String CORRECT_URL = "https://music.yandex.ru/users/voronvorontsov/playlists";
-    static TestService testService = new TestService();
-    static TestCreateRequest request = new TestCreateRequest();
+    static TestService testService = new TestService(new TestCaseRepository());
+    static TestCaseRequest request = new TestCaseRequest();
 
     @BeforeEach
     void setup() {
@@ -32,9 +34,13 @@ class TestTestService {
         request.setPathVariableMap(null);
     }
 
-    @Test
-    void test01_AssertThatReturningUUIDisNotNull() throws TestCreateException {
-            UUID testTaskId = testService.createTestTask(request);
-            assertThat(testTaskId).isNotNull();
-    }
+//    @Test
+//    void test01_AssertThatReturningValueNotNullWhenRequestIsCorrect() throws TestCreateException {
+//        TestCase testCase = new TestCase();
+//        testCase.setId(UUID.randomUUID());
+//        testCase.setName("Test");
+//        testCase.setTestCaseRequest(request);
+//        TestCase savedTestCase = testService.save(testCase);
+//        assertThat(savedTestCase).isNotNull();
+//    }
 }

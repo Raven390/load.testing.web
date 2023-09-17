@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class TestCreateRequest {
+public class TestCaseRequest {
 
     private String url;
     private String body;
