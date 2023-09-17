@@ -1,5 +1,8 @@
 package ru.develonica.load.testing.web.test.model.exception;
 
+/**
+ * Exception создания тестового кейса
+ */
 public class TestCreateException extends Exception {
     public TestCreateException() {
     }

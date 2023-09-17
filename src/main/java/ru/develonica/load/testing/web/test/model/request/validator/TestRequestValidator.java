@@ -2,7 +2,7 @@ package ru.develonica.load.testing.web.test.model.request.validator;
 
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ru.develonica.load.testing.web.test.model.request.TestCreateRequest;
+import ru.develonica.load.testing.web.test.model.request.TestCaseRequest;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,9 +15,9 @@ public class TestRequestValidator {
     private TestRequestValidator() {
     }
 
-    public static boolean validate(TestCreateRequest testCreateRequest) {
-        Matcher matcher = URL_PATTERN.matcher(testCreateRequest.getUrl());
-        return matcher.find() && validateJsonBody(testCreateRequest.getBody());
+    public static boolean validate(TestCaseRequest testCaseRequest) {
+        Matcher matcher = URL_PATTERN.matcher(testCaseRequest.getUrl());
+        return matcher.find() && validateJsonBody(testCaseRequest.getBody());
     }
 
     private static boolean validateJsonBody(String json) {
