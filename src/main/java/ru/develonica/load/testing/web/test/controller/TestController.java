@@ -48,7 +48,7 @@ public class TestController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity delete(@PathVariable UUID id) {
+    public ResponseEntity<UUID> delete(@PathVariable UUID id) {
         try {
             testService.delete(id);
             return ResponseEntity.ok().body(id);

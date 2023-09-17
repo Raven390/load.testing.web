@@ -1,7 +1,6 @@
 package ru.develonica.load.testing.web.test.repository;
 
 import ru.develonica.load.testing.web.test.model.exception.EntityNotFoundException;
-import ru.develonica.load.testing.web.test.model.object.TestCase;
 
 import java.util.List;
 import java.util.UUID;

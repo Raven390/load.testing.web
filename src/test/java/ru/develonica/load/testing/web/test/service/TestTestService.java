@@ -1,17 +1,11 @@
 package ru.develonica.load.testing.web.test.service;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import ru.develonica.load.testing.web.test.model.exception.TestCreateException;
-import ru.develonica.load.testing.web.test.model.object.TestCase;
 import ru.develonica.load.testing.web.test.model.request.TestCaseRequest;
 import ru.develonica.load.testing.web.test.repository.TestCaseRepository;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 
 class TestTestService {

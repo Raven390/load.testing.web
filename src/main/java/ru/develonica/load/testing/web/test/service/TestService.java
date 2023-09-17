@@ -2,10 +2,7 @@ package ru.develonica.load.testing.web.test.service;
 
 import org.springframework.stereotype.Service;
 import ru.develonica.load.testing.web.test.model.exception.EntityNotFoundException;
-import ru.develonica.load.testing.web.test.model.exception.TestCreateException;
 import ru.develonica.load.testing.web.test.model.object.TestCase;
-import ru.develonica.load.testing.web.test.model.request.TestCaseRequest;
-import ru.develonica.load.testing.web.test.model.request.validator.TestRequestValidator;
 import ru.develonica.load.testing.web.test.repository.TestCaseRepository;
 
 import java.util.List;

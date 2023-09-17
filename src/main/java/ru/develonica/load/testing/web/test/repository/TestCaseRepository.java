@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import ru.develonica.load.testing.web.test.model.exception.EntityNotFoundException;
 import ru.develonica.load.testing.web.test.model.object.TestCase;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -11,7 +12,7 @@ import java.util.UUID;
 public class TestCaseRepository implements CrudRepository<TestCase, UUID> {
     @Override
     public List<TestCase> getAllWhereUserId(UUID userId) {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
