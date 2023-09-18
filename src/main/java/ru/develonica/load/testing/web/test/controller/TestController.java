@@ -57,4 +57,11 @@ public class TestController {
         }
 
     }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<TestCaseDto> get(@PathVariable UUID id){
+        TestCase testCase = testService.get(id);
+        TestCaseDto testCaseDto = testCaseMapper.testCaseToDto(testCase);
+        return ResponseEntity.ok().body(testCaseDto);
+    }
 }
