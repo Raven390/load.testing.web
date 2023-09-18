@@ -8,7 +8,7 @@ import ru.develonica.load.testing.web.test.model.dto.TestCaseDto;
 import ru.develonica.load.testing.web.test.model.exception.EntityNotFoundException;
 import ru.develonica.load.testing.web.test.model.mapper.TestCaseMapper;
 import ru.develonica.load.testing.web.test.model.object.TestCase;
-import ru.develonica.load.testing.web.test.model.request.validator.TestRequestValidator;
+import ru.develonica.load.testing.web.test.model.request.validator.*;
 import ru.develonica.load.testing.web.test.service.TestService;
 
 import java.util.List;
@@ -56,5 +56,12 @@ public class TestController {
             return ResponseEntity.notFound().build();
         }
 
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<TestCaseDto> get(@PathVariable UUID id){
+        TestCase testCase = testService.get(id);
+        TestCaseDto testCaseDto = testCaseMapper.testCaseToDto(testCase);
+        return ResponseEntity.ok().body(testCaseDto);
     }
 }
