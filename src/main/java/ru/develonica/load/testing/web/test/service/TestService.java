@@ -1,5 +1,6 @@
 package ru.develonica.load.testing.web.test.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.stereotype.Service;
 import ru.develonica.load.testing.web.test.model.exception.EntityNotFoundException;
 import ru.develonica.load.testing.web.test.model.object.TestCase;
@@ -17,11 +18,11 @@ public class TestService {
         this.testCaseRepository = testCaseRepository;
     }
 
-    public TestCase save(TestCase testCase) {
-        return testCaseRepository.save(testCase);
+    public TestCase save(TestCase testCase, UUID userId) throws JsonProcessingException {
+        return testCaseRepository.save(testCase, userId);
     }
 
-    public TestCase get(UUID id) {
+    public TestCase get(UUID id) throws EntityNotFoundException {
         return testCaseRepository.getById(id);
     }
 

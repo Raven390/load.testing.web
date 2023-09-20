@@ -10,7 +10,6 @@ public class TestCaseRequest {
     private String url;
     private String body;
     private Map<String, String> header;
-    private Map<String, String> pathVariableMap;
 
     public String getUrl() {
         return url;
@@ -36,11 +35,4 @@ public class TestCaseRequest {
         this.header = header;
     }
 
-    public Map<String, String> getPathVariableMap() {
-        return pathVariableMap;
-    }
-
-    public void setPathVariableMap(Map<String, String> pathVariableMap) {
-        this.pathVariableMap = pathVariableMap;
-    }
 }

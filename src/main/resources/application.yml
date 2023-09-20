@@ -11,24 +11,25 @@ management:
     loggers:
       enabled: true
 spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    hikari:
+      maximum-pool-size: ${DATASOURCE_MAX_POOL_SIZE:20}
   security:
     oauth2:
-      client:
-        registration:
-          keycloak:
-            client-id: app
-            authorization-grant-type: authorization_code
-            scope: openid
-        provider:
-          keycloak:
-            issuer-uri: http://localhost/realms/load-testing
-            user-name-attribute: preferred_username
       resourceserver:
         jwt:
-          issuer-uri: http://localhost/realms/load-testing
+          jwk-set-uri: ${KEYCLOAK_REALM_CERT_URL:http://localhost:80/realms/load-testing/protocol/openid-connect/certs}
 
   jackson:
     deserialization:
       fail-on-unknown-properties: true
   application:
     name: app-web
+
+logging:
+  level:
+    root: debug
