@@ -1,5 +1,7 @@
 package ru.develonica.load.testing.web.test.model.request.validator;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -16,6 +18,7 @@ class TestTestRequestValidator {
     static final String MALFORMED_URL_INVALID_PROTOCOL = "htttps://music.yandex.ru/users/voronvorontsov/playlists";
     static final String MALFORMED_URL_WRONG_DOMAIN = "https://music/users/voronvorontsov/playlists";
     TestCaseRequest request = new TestCaseRequest();
+    ObjectMapper objectMapper = new ObjectMapper();
     @BeforeEach
     void setup() {
         request.setUrl(CORRECT_URL);
@@ -28,13 +31,12 @@ class TestTestRequestValidator {
         Map<String, String> headerMap = new HashMap<>();
         headerMap.put("X-INN-Subject", "0101006425");
         request.setHeader(headerMap);
-        request.setPathVariableMap(null);
     }
 
     @Order(0)
     @Test
-    void test01_AssertThatCorrectRequestReturnsTrue() {
-
+    void test01_AssertThatCorrectRequestReturnsTrue() throws JsonProcessingException {
+        System.out.println(objectMapper.writeValueAsString(request));
         boolean result = TestRequestValidator.validate(request);
         assertThat(result).isTrue();
     }

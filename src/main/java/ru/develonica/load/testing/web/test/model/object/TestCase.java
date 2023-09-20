@@ -13,7 +13,8 @@ public class TestCase {
 
     private String name;
 
-    TestCaseRequest testCaseRequest;
+
+    private TestCaseRequest testCaseRequest;
 
     public UUID getId() {
         return id;

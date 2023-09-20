@@ -1,8 +1,8 @@
 package ru.develonica.load.testing.web.test.service;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import ru.develonica.load.testing.web.test.model.request.TestCaseRequest;
-import ru.develonica.load.testing.web.test.repository.TestCaseRepository;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +10,8 @@ import java.util.Map;
 
 class TestTestService {
     public static final String CORRECT_URL = "https://music.yandex.ru/users/voronvorontsov/playlists";
-    static TestService testService = new TestService(new TestCaseRepository());
+    @MockBean
+    static TestService testService;
     static TestCaseRequest request = new TestCaseRequest();
 
     @BeforeEach
@@ -25,7 +26,6 @@ class TestTestService {
         Map<String, String> headerMap = new HashMap<>();
         headerMap.put("X-INN-Subject", "0101006425");
         request.setHeader(headerMap);
-        request.setPathVariableMap(null);
     }
 
 //    @Test
