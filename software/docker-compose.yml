@@ -35,6 +35,18 @@ services:
     networks:
       - software
 
+  liquibase:
+    image: liquibase:0.1
+    container_name: migrations
+    environment:
+      - URL=jdbc:postgresql://postgresql:5432/load_testing
+      - USERNAME=admin
+      - PASSWORD=admin
+    depends_on:
+      - postgresql
+    networks:
+      - software
+
 networks:
   software:
     driver: bridge
