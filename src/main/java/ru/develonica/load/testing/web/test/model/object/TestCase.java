@@ -1,5 +1,6 @@
 package ru.develonica.load.testing.web.test.model.object;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import ru.develonica.load.testing.web.test.model.request.TestCaseRequest;
 
 import java.util.UUID;
@@ -9,11 +10,14 @@ import java.util.UUID;
  */
 public class TestCase {
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private UUID id;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String name;
 
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private TestCaseRequest testCaseRequest;
 
     public UUID getId() {
@@ -39,4 +43,5 @@ public class TestCase {
     public void setTestCaseRequest(TestCaseRequest testCaseRequest) {
         this.testCaseRequest = testCaseRequest;
     }
+
 }

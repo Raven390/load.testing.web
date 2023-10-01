@@ -2,6 +2,7 @@ server:
   port: ${WEB_PORT:8081}
   servlet:
     context-path: ${WEB_CONTEXT_PATH:/app-web/v1}
+
 management:
   endpoints:
     web:
@@ -29,7 +30,8 @@ spring:
       fail-on-unknown-properties: true
   application:
     name: app-web
-
-logging:
-  level:
-    root: debug
+grpc:
+  client:
+    load-testing-start:
+      address: ${GRPC_SERVER_ADDRESS:static://localhost:9090}
+      negotiation-type: plaintext

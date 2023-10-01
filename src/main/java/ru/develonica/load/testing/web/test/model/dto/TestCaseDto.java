@@ -9,10 +9,7 @@ import java.util.UUID;
  */
 public class TestCaseDto {
     private UUID id;
-
     private String name;
-
-
     private TestCaseRequest testCaseRequest;
 
     public String getName() {
