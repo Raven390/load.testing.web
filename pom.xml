@@ -39,11 +39,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>1.5.5.Final</version>
-        </dependency>
         <!--Security-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -58,13 +53,6 @@
             <artifactId>spring-security-oauth2-jose</artifactId>
         </dependency>
         <!--Security-->
-        <!--Kafka-->
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
-            <version>${spring-kafka.version}</version>
-        </dependency>
-        <!--Kafka-->
         <!-- Cache -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -93,7 +81,7 @@
             <scope>test</scope>
         </dependency>
         <!--Testing-->
-
+        <!--DB-->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -103,8 +91,26 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
-    </dependencies>
+        <!--DB-->
+        <!--GRPC-->
+        <dependency>
+            <groupId>net.devh</groupId>
+            <artifactId>grpc-client-spring-boot-starter</artifactId>
+            <version>2.15.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.develonica</groupId>
+            <artifactId>load.testing.common</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <!--GRPC-->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.5.5.Final</version>
+        </dependency>
 
+    </dependencies>
     <build>
         <pluginManagement>
             <plugins>

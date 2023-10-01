@@ -6,10 +6,18 @@ import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class TestCaseRequest {
-
+    private HttpMethod method;
     private String url;
     private String body;
     private Map<String, String> header;
+
+    public HttpMethod getMethod() {
+        return method;
+    }
+
+    public void setMethod(HttpMethod method) {
+        this.method = method;
+    }
 
     public String getUrl() {
         return url;
