@@ -23,7 +23,7 @@ public class TestCaseRepository implements CrudRepository<TestCase, UUID> {
     private static final String FIELD_TEST_CASE_REQUEST = "test_case_request";
 
     private static final String UPSERT_TEST_CASE = """
-            INSERT INTO test_app.test_case1(id, name, test_case_request, user_id)
+            INSERT INTO test_app.test_case(id, name, test_case_request, user_id)
             VALUES(?,?,?::json,?)
             ON CONFLICT (id) DO UPDATE
             SET

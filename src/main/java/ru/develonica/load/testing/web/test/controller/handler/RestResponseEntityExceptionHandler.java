@@ -26,41 +26,42 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     private static final Logger LOG = LoggerFactory.getLogger(RestResponseEntityExceptionHandler.class);
 
     @ExceptionHandler(value = DataAccessException.class)
-    protected ResponseEntity<Object> handleDataAccessDenied(DataAccessException ex, HttpServletRequest httpServletRequest){
+    protected ResponseEntity<Object> handleDataAccessException(DataAccessException dataAccessException, HttpServletRequest httpServletRequest){
         OffsetDateTime timestamp = OffsetDateTime.now();
-        if (ex.getCause().getClass().equals(SQLTransientConnectionException.class)) {
+        if (dataAccessException.getCause().getClass().equals(SQLTransientConnectionException.class)) {
+            LOG.error("Соединение с базой данных потеряно", dataAccessException.getMessage(), dataAccessException);
             return ResponseEntity.internalServerError().body(new ApiErrorResponse(timestamp, ApiErrorCode.CANNOT_OPEN_CONNECTION_WITH_DB));
         }
-        if (ex instanceof InvalidDataAccessResourceUsageException idarue) {
+        if (dataAccessException instanceof InvalidDataAccessResourceUsageException idarue) {
             LOG.error("Ошибка при выполнении запроса (Метод: {}) к базе данных: {}", httpServletRequest.getRequestURL(), idarue.getCause().getMessage(), idarue);
             return ResponseEntity.internalServerError().body(new ApiErrorResponse(timestamp, ApiErrorCode.INVALID_RESOURCE_ACCESS));
         }
-        LOG.error("Произошла ошибка {}", ex.getMessage(), ex);
+        LOG.error("Произошла ошибка {}", dataAccessException.getMessage(), dataAccessException);
         return ResponseEntity.internalServerError().body(new ApiErrorResponse(timestamp, ApiErrorCode.UNKNOWN_DB_ERROR));
     }
 
     @ExceptionHandler(value = IOException.class)
-    protected ResponseEntity<Object> handleIOException(IOException ex) {
+    protected ResponseEntity<Object> handleIOException(IOException ioException) {
         OffsetDateTime timestamp = OffsetDateTime.now();
-        LOG.error("Ошибка соединения: {}", ex.getMessage());
+        LOG.error("Ошибка соединения: {}", ioException.getMessage());
         return ResponseEntity.internalServerError().body(new ApiErrorResponse(timestamp, ApiErrorCode.UNKNOWN_CONNECTION_ERROR));
     }
 
     @ExceptionHandler(value = Exception.class)
-    protected ResponseEntity<Object> handleException(Exception ex) {
+    protected ResponseEntity<Object> handleException(Exception exception) {
         OffsetDateTime timestamp = OffsetDateTime.now();
-        LOG.error("Произошла непредвиденная ошибка: {}", ex.getMessage());
+        LOG.error("Произошла непредвиденная ошибка: {}", exception.getMessage());
         return ResponseEntity.internalServerError().body(new ApiErrorResponse(timestamp, ApiErrorCode.UNEXPECTED_ERROR));
     }
 
     @Override
-    protected ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        ApiErrorResponse response = new ApiErrorResponse(OffsetDateTime.now(), ApiErrorCode.MISSING_REQUEST_PARAMETER, ex.getParameterName());
+    protected ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException missingServletRequestParameterException, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        ApiErrorResponse response = new ApiErrorResponse(OffsetDateTime.now(), ApiErrorCode.MISSING_REQUEST_PARAMETER, missingServletRequestParameterException.getParameterName());
         return ResponseEntity.badRequest().body(response);
     }
 
     @Override
-    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException httpMessageNotReadableException, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         ApiErrorResponse response = new ApiErrorResponse(OffsetDateTime.now(), ApiErrorCode.BAD_REQUEST);
         return ResponseEntity.badRequest().body(response);
     }
