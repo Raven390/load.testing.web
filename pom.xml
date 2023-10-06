@@ -102,6 +102,8 @@
             <groupId>ru.develonica</groupId>
             <artifactId>load.testing.common</artifactId>
             <version>0.1</version>
+            <scope>system</scope>
+            <systemPath>C:\Users\savel\IdeaProjects\load.testing.common\target\load.testing.common-0.1.jar</systemPath>
         </dependency>
         <!--GRPC-->
         <dependency>
